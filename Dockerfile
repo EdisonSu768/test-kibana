@@ -3,6 +3,7 @@ MAINTAINER Qiming
 
 ENV KIBANA_VERSION 4.1.0-linux-x64
 
+
 RUN sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list && \
     apt-get update && \
     apt-get install --no-install-recommends -y curl supervisor ca-certificates ssh-client &&\
