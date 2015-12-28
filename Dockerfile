@@ -20,10 +20,3 @@ RUN wget https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}.tar.
     mkdir -p /app && \
     tar zxf /tmp/kibana.tar.gz && mv kibana-${KIBANA_VERSION}/* /app
 
-ADD run.sh /
-
-RUN chmod ugo+rx /run.sh
-
-EXPOSE 80
-
-CMD ["/run.sh"]
