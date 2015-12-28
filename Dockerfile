@@ -15,4 +15,4 @@ RUN apk add --update nodejs curl && \
     rm -rf /var/cache/apk/* /kibana-${KIBANA_VERSION}-linux-x64.tar.gz
 #    mv /kibana-${KIBANA_VERSION}-linux-x64/* /app
 
-#CMD ["/kibana-4.0.2-linux-x64/bin/kibana"]
+#CMD ["/kibana-4.1.0-linux-x64/bin/kibana"]
