@@ -1,5 +1,6 @@
-FROM butler_base
-MAINTAINER Qiming
+FROM jeanblanchard/busybox-java:7
+
+MAINTAINER Edison.Su
 
 ENV KIBANA_VERSION 4.1.0-linux-x64
 
