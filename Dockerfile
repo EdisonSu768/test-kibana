@@ -15,9 +15,6 @@ RUN mkdir -p app && \
     cp -r /kibana-${KIBANA_VERSION}-linux-x64/* /app && \
     cd / && rm -rf /kibana-${KIBANA_VERSION}-linux-x64
 
-RUN sed -i "s;^elasticsearch_url:.*;elasticsearch_url:http://localhost:9200;" "/app/config/kibana.yml" && \
-    sed -i "s;^default_app_id:.*;default_app_id: dashboard/default-Dashboard;" "/app/config/kibana.yml"
-
 EXPOSE 5601
 
 CMD ["/app/kibana-4.1.0-linux-x64/bin/kibana"]
