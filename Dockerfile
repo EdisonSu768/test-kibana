@@ -5,7 +5,8 @@ ENV KIBANA_VERSION 4.1.0-linux-x64
 RUN apk add --update nodejs curl && \
     curl -LO https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz && \
     tar xzf /kibana-${KIBANA_VERSION}-linux-x64.tar.gz -C / && \
-    mv /kibana-${KIBANA_VERSION}/* /app
+    mkdir -p /app && \
+    mv /kibana-${KIBANA_VERSION}/* /app && \
     rm -rf /var/cache/apk/* /kibana-${KIBANA_VERSION}-linux-x64.tar.gz
 
 
