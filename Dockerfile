@@ -12,9 +12,3 @@ RUN apk add --update nodejs curl && \
     ln -sf /usr/bin/node /opt/kibana/node/bin/node && \
     apk del curl && \
     rm -rf /var/cache/apk/*
-
-ADD ./run.sh /opt/kibana/
-
-EXPOSE 5601
-
-ENTRYPOINT ["/opt/kibana/run.sh"]
