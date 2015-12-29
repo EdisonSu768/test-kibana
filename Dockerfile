@@ -1,20 +1,20 @@
-FROM alpine:3.1
+FROM alpine:3.2
+MAINTAINER Ellison Lou
 
-MAINTAINER Edison.Su
-
-ENV KIBANA_VERSION 4.1.0
+ENV KIBANA_VERSION 4.1.0-linux-x64
 
 RUN apk add --update nodejs curl && \
-    curl -LO https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz && \
-    tar xzf /kibana-${KIBANA_VERSION}-linux-x64.tar.gz -C / && \
-    rm /kibana-${KIBANA_VERSION}-linux-x64/node/bin/node && \
-    rm /kibana-${KIBANA_VERSION}-linux-x64/node/bin/npm && \
-    ln -s /usr/bin/node /kibana-${KIBANA_VERSION}-linux-x64/node/bin/node && \
-    ln -s /usr/bin/npm /kibana-${KIBANA_VERSION}-linux-x64/node/bin/npm && \
-    sed -i '/elasticsearch_url/s/localhost/elasticsearch/' /kibana-${KIBANA_VERSION}-linux-x64/config/kibana.yml && \
-    rm -rf /var/cache/apk/* /kibana-${KIBANA_VERSION}-linux-x64.tar.gz
-#    mv /kibana-${KIBANA_VERSION}-linux-x64/* /app
+    mkdir /opt && \
+    ln -sf /opt/kibana-${KIBANA_VERSION} /opt/kibana && \
+    curl -sL https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}.tar.gz | tar xz -C /opt && \
+    rm -rf /opt/kibana/node && \
+    mkdir -p /opt/kibana/node/bin && \
+    ln -sf /usr/bin/node /opt/kibana/node/bin/node && \
+    apk del curl && \
+    rm -rf /var/cache/apk/*
 
-CMD /kibana-4.1.0-linux-x64/bin/kibana
+ADD ./run.sh /opt/kibana/
 
 EXPOSE 5601
+
+ENTRYPOINT ["/opt/kibana/run.sh"]
