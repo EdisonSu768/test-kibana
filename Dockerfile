@@ -8,9 +8,4 @@ RUN apk add --update nodejs curl && \
     mv /kibana-${KIBANA_VERSION}/* /app
     rm -rf /var/cache/apk/* /kibana-${KIBANA_VERSION}-linux-x64.tar.gz
 
-ADD run.sh /
-RUN chmod ugo+rx /run.sh
 
-EXPOSE 80
-
-CMD ["/run.sh"]
